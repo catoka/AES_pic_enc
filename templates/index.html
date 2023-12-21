@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block body %}
+<div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-12 col-md-6">
+            <form method="post" enctype="multipart/form-data">
+                <div class="d-flex justify-content-center mb-3">
+                    <input type="file" name="file" class="form-control" style="max-width: 300px;">
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <input type="text" name="key" id="key" class="form-control" style="max-width: 300px;" placeholder="Ключ">
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <input type="text" name="iv" id="iv" class="form-control" style="max-width: 300px;" placeholder="IV">
+                </div>
+                <!-- Радиокнопки для выбора длины ключа -->
+                <div class="mb-3 text-center">
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="radio" name="key_length" id="key-length-128" value="128" checked {% if aes_key_length == 128 %}checked{% endif %}>
+                        <label class="form-check-label" for="key-length-128">128 бит</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="radio" name="key_length" id="key-length-192" value="192" {% if aes_key_length == 192 %}checked{% endif %}>
+                        <label class="form-check-label" for="key-length-192">192 бита</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="radio" name="key_length" id="key-length-256" value="256" {% if aes_key_length == 256 %}checked{% endif %}>
+                        <label class="form-check-label" for="key-length-256">256 бит</label>
+                    </div>
+                </div>
+                <!-- Кнопка отправки формы -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Зашифровать</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

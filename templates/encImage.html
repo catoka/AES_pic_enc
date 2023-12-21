@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Зашифрованное изображение
+{% endblock %}
+
+{% block body %}
+
+
+<div class="mb-4 rounded-3 text-center">
+    <h1 class="text-center"> Оригинальное изображение:</h1>
+    <img src="{{ url_for('static', filename='tmpImg/originalImg.png') }}" width="300" height="300">
+    <h1 class="text-center">Результаты расчетов:</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Метрика</th>
+                <th scope="col">Шифрование без библиотеки</th>
+                <th scope="col">Шифрование с библиотекой</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Изображение</th>
+                <td><img src="{{ url_for('static', filename='tmpImg/encryptedImg.png') }}" width="200" height="200"></td>
+                <td><img src="{{ url_for('static', filename='tmpImg/encByLibImg.png') }}" width="200" height="200"></td>
+            </tr>
+            <tr>
+                <th scope="row">Энтропия</th>
+                <td>{{ entropy_value1 }}</td>
+                <td>{{ entropy_value2 }}</td>
+            </tr>
+            <tr>
+                <th scope="row">UACI (Расчет изменения интенсивности)</th>
+                <td>{{ uaci_value }}</td>
+                <td>{{ uaci_value2 }}</td>
+            </tr>
+            <tr>
+                <th scope="row">NPCR (Расчет процента измененных пикселей)</th>
+                <td>{{ npcr_value }}</td>
+                <td>{{ npcr_value2 }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Средняя яркость</th>
+                <td>{{ avg_brightness1 }}</td>
+                <td>{{ avg_brightness2 }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Коэффициент корреляции</th>
+                <td>{{ coff_corelation1 }}</td>
+                <td>{{ coff_corelation2 }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Расшифрованные изображения</th>
+                <td><img src="{{ url_for('static', filename='tmpImg/decryptedImg.png') }}" width="200" height="200"></td>
+                <td><img src="{{ url_for('static', filename='tmpImg/decByLibImg.png') }}" width="200" height="200"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
